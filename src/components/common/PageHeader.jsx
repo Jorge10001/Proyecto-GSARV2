@@ -1,0 +1,10 @@
+function PageHeader({ title, text }) {
+  return (
+    <header className="page-header">
+      <div>
+        <h1>{title}</h1>
+        <p>{text}</p>
+      </div>
+    </header>
+  );
+}
