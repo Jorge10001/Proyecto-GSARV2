@@ -23,13 +23,30 @@ export default function JsonPanel({ usuarios, solicitudes, mensajes }) {
       <PageHeader
         title="Datos JSON"
         text="Exportación saneada de la demo. No incluye contraseñas, hashes ni secretos."
+        actions={
+          <span className="count-pill">
+            <i className="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            Datos saneados
+          </span>
+        }
       />
-      <section className="json-panel">
-        <div className="json-actions">
-          <button className="primary-button" onClick={downloadJSON}>
-            <i className="fa-solid fa-download"></i>
-            Descargar JSON
-          </button>
+
+      <section className="json-panel" aria-label="Exportación JSON de la demo">
+        <div className="code-toolbar">
+          <div>
+            <span className="eyebrow">Vista previa</span>
+            <strong className="code-title">gsar-demo-datos.json</strong>
+          </div>
+          <div className="json-actions">
+            <span className="code-badge">
+              <i className="fa-solid fa-lock" aria-hidden="true"></i>
+              Sin secretos
+            </span>
+            <button className="primary-button" type="button" onClick={downloadJSON}>
+              <i className="fa-solid fa-download" aria-hidden="true"></i>
+              Descargar JSON
+            </button>
+          </div>
         </div>
         <pre>{payload}</pre>
       </section>

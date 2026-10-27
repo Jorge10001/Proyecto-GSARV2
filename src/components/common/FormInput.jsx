@@ -1,3 +1,4 @@
+import { useId } from "react";
 import FieldError from "./FieldError.jsx";
 
 export default function FormInput({
@@ -9,17 +10,23 @@ export default function FormInput({
   placeholder = "",
   autoComplete,
 }) {
+  const inputId = useId();
+  const errorId = `${inputId}-error`;
+
   return (
-    <label>
+    <label htmlFor={inputId}>
       {label}
       <input
+        id={inputId}
         type={type}
         value={value}
         placeholder={placeholder}
         autoComplete={autoComplete}
+        aria-invalid={error ? "true" : undefined}
+        aria-describedby={error ? errorId : undefined}
         onChange={(event) => onChange(event.target.value)}
       />
-      <FieldError message={error} />
+      <FieldError id={errorId} message={error} />
     </label>
   );
 }

@@ -1,3 +1,7 @@
-export default function FieldError({ message }) {
-  return message ? <small className="field-error">{message}</small> : null;
+export default function FieldError({ message, id }) {
+  return message ? (
+    <small id={id} className="field-error" role="alert">
+      {message}
+    </small>
+  ) : null;
 }

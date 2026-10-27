@@ -12,7 +12,8 @@ import EmployeeRouter from "./features/employee/EmployeeRouter.jsx";
 function DemoBanner() {
   return (
     <div className="demo-banner" role="status">
-      {DEMO_NOTICE}
+      <i className="fa-solid fa-circle-info" aria-hidden="true"></i>
+      <span>{DEMO_NOTICE}</span>
     </div>
   );
 }
