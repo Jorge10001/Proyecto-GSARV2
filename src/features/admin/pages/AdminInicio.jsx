@@ -1,4 +1,7 @@
-function AdminInicio({ usuarios, solicitudes, mensajes }) {
+import PageHeader from "../../../components/common/PageHeader.jsx";
+import Metric from "../../../components/common/Metric.jsx";
+
+export default function AdminInicio({ usuarios, solicitudes, mensajes }) {
   const pendientes = solicitudes.filter((item) => item.estado === "Pendiente").length;
   const aprobadas = solicitudes.filter((item) => item.estado === "Aprobada").length;
 

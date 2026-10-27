@@ -1,4 +1,6 @@
-function EmployeeShell({ sesion, route, logout, children }) {
+import { routeTo } from "../utils/routing.js";
+
+export default function EmployeeShell({ sesion, route, logout, children }) {
   const links = [
     ["/empleado/inicio", "fa-house", "Inicio"],
     ["/empleado/requisitos", "fa-file-lines", "Requisitos"],

@@ -1,4 +1,8 @@
-function AdminSolicitudes({ solicitudes }) {
+import PageHeader from "../../../components/common/PageHeader.jsx";
+import StatusBadge from "../../../components/common/StatusBadge.jsx";
+import { routeTo } from "../../../utils/routing.js";
+
+export default function AdminSolicitudes({ solicitudes }) {
   return (
     <>
       <PageHeader title="Gestión de solicitudes" text="Revise, filtre y procese solicitudes registradas." />

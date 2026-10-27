@@ -1,19 +1,29 @@
-function JsonPanel({ usuarios, solicitudes, mensajes }) {
-  const payload = useMemo(() => JSON.stringify({ usuarios, solicitudes, mensajes }, null, 2), [usuarios, solicitudes, mensajes]);
+import { useMemo } from "react";
+import PageHeader from "../../../components/common/PageHeader.jsx";
+import { buildDemoExport } from "../../../utils/security.js";
+
+export default function JsonPanel({ usuarios, solicitudes, mensajes }) {
+  const payload = useMemo(
+    () => JSON.stringify(buildDemoExport({ usuarios, solicitudes, mensajes }), null, 2),
+    [usuarios, solicitudes, mensajes]
+  );
 
   function downloadJSON() {
     const blob = new Blob([payload], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "gsar-datos.json";
+    link.download = "gsar-demo-datos.json";
     link.click();
     URL.revokeObjectURL(url);
   }
 
   return (
     <>
-      <PageHeader title="Datos JSON" text="Representación semiestructurada de la información guardada en localStorage." />
+      <PageHeader
+        title="Datos JSON"
+        text="Exportación saneada de la demo. No incluye contraseñas, hashes ni secretos."
+      />
       <section className="json-panel">
         <div className="json-actions">
           <button className="primary-button" onClick={downloadJSON}>

@@ -1,4 +1,8 @@
-function AdminMensajes({ mensajes, setMensajes }) {
+import PageHeader from "../../../components/common/PageHeader.jsx";
+import EmptyState from "../../../components/common/EmptyState.jsx";
+import StatusBadge from "../../../components/common/StatusBadge.jsx";
+
+export default function AdminMensajes({ mensajes, setMensajes }) {
   function responder(id) {
     setMensajes(mensajes.map((item) => (item.id === id ? { ...item, estado: "Respondido" } : item)));
   }

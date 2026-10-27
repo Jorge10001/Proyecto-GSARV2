@@ -1,4 +1,11 @@
-function NuevaSolicitud({ sesion, solicitudes, setSolicitudes }) {
+import { useState } from "react";
+import PageHeader from "../../../components/common/PageHeader.jsx";
+import FieldError from "../../../components/common/FieldError.jsx";
+import { tiposSolicitud } from "../../../data/seedData.js";
+import { today, uid } from "../../../utils/format.js";
+import { isSafeHttpUrl } from "../../../utils/validation.js";
+
+export default function NuevaSolicitud({ sesion, solicitudes, setSolicitudes }) {
   const [form, setForm] = useState({
     tipo: "Ascenso",
     cargoSolicitado: "",
@@ -18,8 +25,8 @@ function NuevaSolicitud({ sesion, solicitudes, setSolicitudes }) {
     if (form.justificacion.trim().length < 30) {
       nextErrors.justificacion = "La justificación debe tener mínimo 30 caracteres.";
     }
-    if (!/^https?:\/\/.+\..+/.test(form.evidencia.trim())) {
-      nextErrors.evidencia = "Ingrese un enlace válido de documentos.";
+    if (!isSafeHttpUrl(form.evidencia.trim())) {
+      nextErrors.evidencia = "Ingrese un enlace HTTP o HTTPS válido de documentos.";
     }
 
     setErrors(nextErrors);
@@ -48,7 +55,11 @@ function NuevaSolicitud({ sesion, solicitudes, setSolicitudes }) {
     <>
       <PageHeader title="Nueva solicitud" text="Complete la información y adjunte el enlace de evidencias." />
       <section className="form-surface">
-        {saved && <div className="success-alert">Solicitud registrada correctamente en localStorage.</div>}
+        {saved && (
+          <div className="success-alert">
+            Solicitud registrada correctamente en el almacenamiento local de la demo.
+          </div>
+        )}
         <div className="applicant-grid">
           <div>
             <span>Solicitante</span>

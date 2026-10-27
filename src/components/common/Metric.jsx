@@ -1,4 +1,4 @@
-function Metric({ icon, label, value }) {
+export default function Metric({ icon, label, value }) {
   return (
     <article className="metric">
       <i className={`fa-solid ${icon}`}></i>

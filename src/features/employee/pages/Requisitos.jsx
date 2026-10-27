@@ -1,4 +1,6 @@
-function Requisitos() {
+import PageHeader from "../../../components/common/PageHeader.jsx";
+
+export default function Requisitos() {
   return (
     <>
       <PageHeader title="Requisitos" text="Documentos sugeridos para respaldar la solicitud." />

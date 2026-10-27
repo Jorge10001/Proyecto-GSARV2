@@ -1,4 +1,9 @@
-function EmpleadoInicio({ sesion, solicitudes }) {
+import PageHeader from "../../../components/common/PageHeader.jsx";
+import Metric from "../../../components/common/Metric.jsx";
+import StatusBadge from "../../../components/common/StatusBadge.jsx";
+import EmptyState from "../../../components/common/EmptyState.jsx";
+
+export default function EmpleadoInicio({ sesion, solicitudes }) {
   const misSolicitudes = solicitudes.filter((item) => item.correo === sesion.correo);
   const ultima = misSolicitudes[misSolicitudes.length - 1];
 

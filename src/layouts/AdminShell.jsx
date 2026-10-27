@@ -1,4 +1,6 @@
-function AdminShell({ sesion, route, logout, children }) {
+import { routeTo } from "../utils/routing.js";
+
+export default function AdminShell({ sesion, route, logout, children }) {
   const links = [
     ["/admin/inicio", "fa-gauge", "Inicio"],
     ["/admin/solicitudes", "fa-clipboard-list", "Solicitudes"],

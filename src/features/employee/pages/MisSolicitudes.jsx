@@ -1,4 +1,8 @@
-function MisSolicitudes({ sesion, solicitudes }) {
+import PageHeader from "../../../components/common/PageHeader.jsx";
+import EmptyState from "../../../components/common/EmptyState.jsx";
+import StatusBadge from "../../../components/common/StatusBadge.jsx";
+
+export default function MisSolicitudes({ sesion, solicitudes }) {
   const misSolicitudes = solicitudes.filter((item) => item.correo === sesion.correo).reverse();
 
   return (

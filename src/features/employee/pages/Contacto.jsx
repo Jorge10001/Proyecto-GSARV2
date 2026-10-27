@@ -1,4 +1,11 @@
-function Contacto({ sesion, mensajes, setMensajes }) {
+import { useState } from "react";
+import PageHeader from "../../../components/common/PageHeader.jsx";
+import FieldError from "../../../components/common/FieldError.jsx";
+import EmptyState from "../../../components/common/EmptyState.jsx";
+import StatusBadge from "../../../components/common/StatusBadge.jsx";
+import { today, uid } from "../../../utils/format.js";
+
+export default function Contacto({ sesion, mensajes, setMensajes }) {
   const [form, setForm] = useState({ asunto: "", texto: "" });
   const [errors, setErrors] = useState({});
   const misMensajes = mensajes.filter((item) => item.correo === sesion.correo).reverse();

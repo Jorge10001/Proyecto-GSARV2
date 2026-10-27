@@ -1,4 +1,9 @@
-function Login({ usuarios, onLogin }) {
+import { useState } from "react";
+import logoUrl from "../../../assets/logos/uleam-logo-png_seeklogo-315386.png";
+import FieldError from "../common/FieldError.jsx";
+import { validateEmail } from "../../utils/validation.js";
+
+export default function Login({ usuarios, onLogin }) {
   const [form, setForm] = useState({ correo: "", password: "" });
   const [errors, setErrors] = useState({});
 
@@ -7,7 +12,9 @@ function Login({ usuarios, onLogin }) {
     const nextErrors = {};
 
     if (!validateEmail(form.correo)) nextErrors.correo = "Ingrese un correo válido.";
-    if (form.password.length < 6) nextErrors.password = "La contraseña debe tener mínimo 6 caracteres.";
+    if (form.password.length < 6) {
+      nextErrors.password = "La contraseña debe tener mínimo 6 caracteres.";
+    }
 
     const usuario = usuarios.find(
       (item) =>
@@ -28,7 +35,7 @@ function Login({ usuarios, onLogin }) {
     <main className="login-page">
       <section className="login-panel">
         <div className="brand-block">
-          <img src="assets/logos/uleam-logo-png_seeklogo-315386.png" alt="Logo ULEAM" />
+          <img src={logoUrl} alt="Logo ULEAM" />
           <div>
             <p>ULEAM</p>
             <h1>GSAR</h1>
@@ -37,13 +44,17 @@ function Login({ usuarios, onLogin }) {
         <form className="login-form" onSubmit={submit} noValidate>
           <h2>Sistema de acceso</h2>
           <p>Gestión de solicitudes de ascenso y recategorización.</p>
+          <p className="demo-login-note">
+            Use las credenciales de demostración entregadas por el docente.
+          </p>
           {errors.general && <div className="form-alert">{errors.general}</div>}
           <label>
-            Correo institucional
+            Correo de demostración
             <input
               type="email"
+              autoComplete="username"
               value={form.correo}
-              placeholder="admin@uleam.edu.ec"
+              placeholder="admin.demo@gsar.example"
               onChange={(event) => setForm({ ...form, correo: event.target.value })}
             />
             <FieldError message={errors.correo} />
@@ -52,8 +63,9 @@ function Login({ usuarios, onLogin }) {
             Contraseña
             <input
               type="password"
+              autoComplete="current-password"
               value={form.password}
-              placeholder="Mínimo 6 caracteres"
+              placeholder="Contraseña de demo"
               onChange={(event) => setForm({ ...form, password: event.target.value })}
             />
             <FieldError message={errors.password} />

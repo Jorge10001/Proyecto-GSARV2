@@ -1,4 +1,11 @@
-function RevisionSolicitud({ route, solicitudes, setSolicitudes }) {
+import { useState } from "react";
+import PageHeader from "../../../components/common/PageHeader.jsx";
+import StatusBadge from "../../../components/common/StatusBadge.jsx";
+import { today } from "../../../utils/format.js";
+import { routeTo } from "../../../utils/routing.js";
+import { isSafeHttpUrl } from "../../../utils/validation.js";
+
+export default function RevisionSolicitud({ route, solicitudes, setSolicitudes }) {
   const id = route.split("/").pop();
   const solicitud = solicitudes.find((item) => item.id === id);
   const [observacion, setObservacion] = useState("");
@@ -11,6 +18,8 @@ function RevisionSolicitud({ route, solicitudes, setSolicitudes }) {
       </>
     );
   }
+
+  const evidenciaSegura = isSafeHttpUrl(solicitud.evidencia) ? solicitud.evidencia : "";
 
   function updateEstado(estado) {
     const next = solicitudes.map((item) =>
@@ -44,7 +53,11 @@ function RevisionSolicitud({ route, solicitudes, setSolicitudes }) {
         <div className="evidence-box">
           <strong>Justificación</strong>
           <p>{solicitud.justificacion}</p>
-          <a href={solicitud.evidencia} target="_blank" rel="noreferrer">Abrir evidencias</a>
+          {evidenciaSegura ? (
+            <a href={evidenciaSegura} target="_blank" rel="noopener noreferrer">Abrir evidencias</a>
+          ) : (
+            <span className="field-error">Enlace de evidencia inválido o no seguro.</span>
+          )}
         </div>
         <label className="observation-field">
           Observación de revisión

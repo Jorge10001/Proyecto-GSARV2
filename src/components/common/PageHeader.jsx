@@ -1,4 +1,4 @@
-function PageHeader({ title, text }) {
+export default function PageHeader({ title, text }) {
   return (
     <header className="page-header">
       <div>

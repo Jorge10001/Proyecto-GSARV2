@@ -1,0 +1,29 @@
+node_modules/
+dist/
+.vite/
+coverage/
+
+# Archivos locales y secretos
+.env
+.env.*
+!.env.example
+*.local
+*.local.md
+DEMO-CREDENTIALS.local.md
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Respaldos y artefactos temporales
+GSAR-Backup-*/
+backups/
+*.bak
+*.backup
+*.zip
+*.bundle
+*.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
